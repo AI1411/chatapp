@@ -1,0 +1,42 @@
+[package]
+name = "chatapp-mobile"
+version.workspace = true
+edition.workspace = true
+build = "build.rs"
+
+[lib]
+name = "chatapp_mobile_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+shared = { path = "../../crates/shared" }
+
+# Tauri
+tauri = { version = "2", features = [] }
+tauri-plugin-fs = "2"
+tauri-plugin-notification = "2"
+
+# gRPC client
+tonic.workspace = true
+prost.workspace = true
+
+# Async
+tokio.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Utils
+uuid.workspace = true
+chrono.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-shell = "2"

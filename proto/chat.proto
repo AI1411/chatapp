@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package chat;
+
+import "common.proto";
+
+// Chat service for room and message management
+service ChatService {
+  // Create a new chat room
+  rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse);
+
+  // Get list of chat rooms
+  rpc GetRooms(GetRoomsRequest) returns (GetRoomsResponse);
+
+  // Send a message to a room
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse);
+
+  // Get messages from a room
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+}
+
+// Chat room entity
+message Room {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string owner_id = 4;
+  repeated string member_ids = 5;
+  common.Timestamp created_at = 6;
+  common.Timestamp updated_at = 7;
+}
+
+// Message entity
+message Message {
+  string id = 1;
+  string room_id = 2;
+  string sender_id = 3;
+  string content = 4;
+  MessageType type = 5;
+  common.Timestamp created_at = 6;
+}
+
+// Message types
+enum MessageType {
+  MESSAGE_TYPE_UNSPECIFIED = 0;
+  MESSAGE_TYPE_TEXT = 1;
+  MESSAGE_TYPE_IMAGE = 2;
+  MESSAGE_TYPE_FILE = 3;
+}
+
+// Create room request
+message CreateRoomRequest {
+  string name = 1;
+  string description = 2;
+  repeated string member_ids = 3;
+  // Idempotency key
+  string request_id = 4;
+}
+
+// Create room response
+message CreateRoomResponse {
+  Room room = 1;
+  string request_id = 2;
+}
+
+// Get rooms request
+message GetRoomsRequest {
+  common.PaginationRequest pagination = 1;
+}
+
+// Get rooms response
+message GetRoomsResponse {
+  repeated Room rooms = 1;
+}
+
+// Send message request
+message SendMessageRequest {
+  string room_id = 1;
+  string content = 2;
+  MessageType type = 3;
+  // Idempotency key
+  string request_id = 4;
+}
+
+// Send message response
+message SendMessageResponse {
+  Message message = 1;
+  string request_id = 2;
+}
+
+// Get messages request
+message GetMessagesRequest {
+  string room_id = 1;
+  common.PaginationRequest pagination = 2;
+}
+
+// Get messages response
+message GetMessagesResponse {
+  repeated Message messages = 1;
+  string next_cursor = 2;
+}

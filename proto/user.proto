@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package user;
+
+import "common.proto";
+
+// User service for authentication and user management
+service UserService {
+  // Register a new user
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  // Login with email and password
+  rpc Login(LoginRequest) returns (LoginResponse);
+
+  // Get user information
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+// User entity
+message User {
+  string id = 1;
+  string email = 2;
+  string display_name = 3;
+  string avatar_url = 4;
+  common.Timestamp created_at = 5;
+  common.Timestamp updated_at = 6;
+}
+
+// Register request
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string display_name = 3;
+  // Idempotency key
+  string request_id = 4;
+}
+
+// Register response
+message RegisterResponse {
+  User user = 1;
+  string token = 2;
+  string request_id = 3;
+}
+
+// Login request
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+// Login response
+message LoginResponse {
+  User user = 1;
+  string token = 2;
+}
+
+// Get user request
+message GetUserRequest {
+  string user_id = 1;
+}
+
+// Get user response
+message GetUserResponse {
+  User user = 1;
+}

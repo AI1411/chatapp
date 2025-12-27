@@ -1,0 +1,43 @@
+[package]
+name = "api-server"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "api-server"
+path = "src/main.rs"
+
+[dependencies]
+shared = { path = "../shared" }
+
+# gRPC
+tonic.workspace = true
+prost.workspace = true
+prost-types.workspace = true
+
+# Database
+sqlx.workspace = true
+
+# Async
+tokio.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Auth
+jsonwebtoken.workspace = true
+
+# Utils
+uuid.workspace = true
+chrono.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+# Config
+dotenvy.workspace = true
+
+[dev-dependencies]
+tokio-test = "0.4"

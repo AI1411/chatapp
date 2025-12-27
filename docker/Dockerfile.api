@@ -1,0 +1,48 @@
+# Build stage
+FROM rust:1.83-slim-bookworm AS builder
+
+# Install protobuf compiler
+RUN apt-get update && apt-get install -y \
+    protobuf-compiler \
+    libprotobuf-dev \
+    pkg-config \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy workspace files
+COPY Cargo.toml Cargo.lock ./
+COPY crates ./crates
+COPY proto ./proto
+
+# Build the API server
+RUN cargo build --release --package api-server
+
+# Runtime stage
+FROM debian:bookworm-slim
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    libssl3 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy the binary from builder
+COPY --from=builder /app/target/release/api-server /app/api-server
+
+# Copy migrations
+COPY --from=builder /app/crates/api-server/migrations /app/migrations
+
+# Expose gRPC port
+EXPOSE 50051
+
+# Set environment variables
+ENV RUST_LOG=api_server=info
+ENV HOST=0.0.0.0
+ENV PORT=50051
+
+# Run the server
+CMD ["/app/api-server"]

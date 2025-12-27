@@ -1,0 +1,10 @@
+# Clippy configuration
+
+# Cognitive complexity threshold
+cognitive-complexity-threshold = 25
+
+# Maximum lines in a function
+too-many-lines-threshold = 100
+
+# Allow certain patterns
+allow-unwrap-in-tests = true

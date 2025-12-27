@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package common;
+
+// Timestamp representation
+message Timestamp {
+  int64 seconds = 1;
+  int32 nanos = 2;
+}
+
+// Pagination request
+message PaginationRequest {
+  int32 page_size = 1;
+  string cursor = 2;
+}
+
+// Empty response for operations that don't return data
+message Empty {}

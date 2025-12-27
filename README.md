@@ -138,10 +138,16 @@ cargo test
 ```bash
 cd mobile
 
-# Lint
+# Lint + フォーマットチェック（Biome）
+npm run check
+
+# Lint + フォーマット自動修正
+npm run check:fix
+
+# Lint のみ
 npm run lint
 
-# フォーマット
+# フォーマットのみ
 npm run format
 
 # 型チェック

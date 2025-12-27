@@ -13,6 +13,7 @@ fn main() -> Result<()> {
         .build_server(true)
         .build_client(true)
         .out_dir("src/proto")
+        .file_descriptor_set_path("src/proto/descriptor.bin")
         .compile_protos(&proto_files, &include_dirs)?;
 
     // Rerun if proto files change

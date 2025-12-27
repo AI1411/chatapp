@@ -1,5 +1,5 @@
 # Build stage
-FROM rust:1.83-slim-bookworm AS builder
+FROM rust:1.92-slim-bookworm AS builder
 
 # Install protobuf compiler
 RUN apt-get update && apt-get install -y \
@@ -15,6 +15,9 @@ WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 COPY crates ./crates
 COPY proto ./proto
+COPY mobile/src-tauri/Cargo.toml ./mobile/src-tauri/Cargo.toml
+COPY mobile/src-tauri/src ./mobile/src-tauri/src
+COPY mobile/src-tauri/build.rs ./mobile/src-tauri/build.rs
 
 # Build the API server
 RUN cargo build --release --package api-server

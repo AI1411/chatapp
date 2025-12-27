@@ -20,15 +20,13 @@ impl Config {
     /// Load configuration from environment variables
     pub fn from_env() -> Result<Self> {
         Ok(Self {
-            database_url: env::var("DATABASE_URL")
-                .context("DATABASE_URL must be set")?,
+            database_url: env::var("DATABASE_URL").context("DATABASE_URL must be set")?,
             host: env::var("HOST").unwrap_or_else(|_| "0.0.0.0".to_string()),
             port: env::var("PORT")
                 .unwrap_or_else(|_| "50051".to_string())
                 .parse()
                 .context("PORT must be a valid number")?,
-            jwt_secret: env::var("JWT_SECRET")
-                .context("JWT_SECRET must be set")?,
+            jwt_secret: env::var("JWT_SECRET").context("JWT_SECRET must be set")?,
         })
     }
 }

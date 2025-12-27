@@ -1,7 +1,7 @@
 //! Database connection and migration management
 
 use anyhow::Result;
-use sqlx::{postgres::PgPoolOptions, PgPool};
+use sqlx::{PgPool, postgres::PgPoolOptions};
 use tracing::info;
 
 /// Create a database connection pool

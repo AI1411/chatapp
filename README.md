@@ -73,7 +73,7 @@ cp .env.example .env
 
 開発用 PostgreSQL を起動:
 ```bash
-docker compose -f docker-compose.dev.yml up -d
+docker compose up -d
 ```
 
 ### API サーバの起動

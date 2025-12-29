@@ -31,6 +31,20 @@ export interface Message {
   createdAt: string;
 }
 
+// Tsubuyaki (Tweet) types
+export interface Tsubuyaki {
+  id: string;
+  userId: string;
+  userName: string;
+  userDisplayName: string;
+  userAvatarUrl?: string;
+  content: string;
+  likesCount: number;
+  repliesCount: number;
+  isLiked: boolean;
+  createdAt: string;
+}
+
 // Auth types
 export interface LoginRequest {
   email: string;

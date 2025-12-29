@@ -38,10 +38,10 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: Check formatting
-        run: cargo fmt --all -- --check
+        run: cargo fmt --package api-server --package shared -- --check
 
-      - name: Run clippy
-        run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Run clippy on api-server
+        run: cargo clippy --package api-server --package shared --all-targets -- -D warnings
 
   # Rust tests
   rust-test:
@@ -86,7 +86,7 @@ jobs:
         env:
           DATABASE_URL: postgres://chatapp:chatapp_test@localhost:5432/chatapp_test
           JWT_SECRET: test_secret
-        run: cargo test --all
+        run: cargo test --package api-server --package shared
 
   # Frontend linting and type checking
   frontend-lint:

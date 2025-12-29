@@ -5,6 +5,11 @@ members = [
     "crates/shared",
     "mobile/src-tauri",
 ]
+# Default members for CI builds (excludes mobile which requires system libraries)
+default-members = [
+    "crates/api-server",
+    "crates/shared",
+]
 
 [workspace.package]
 version = "0.1.0"

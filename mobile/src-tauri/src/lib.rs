@@ -2,6 +2,8 @@
 //!
 //! This module contains the Tauri application setup and command handlers.
 
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 mod commands;
 mod grpc;
 mod state;

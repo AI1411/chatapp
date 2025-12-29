@@ -18,7 +18,7 @@ fn main() -> Result<()> {
 
     // Rerun if proto files change
     for proto in &proto_files {
-        println!("cargo:rerun-if-changed={}", proto);
+        println!("cargo:rerun-if-changed={proto}");
     }
 
     Ok(())

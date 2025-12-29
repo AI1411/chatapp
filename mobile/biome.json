@@ -29,9 +29,6 @@
       },
       "a11y": {
         "useButtonType": "warn"
-      },
-      "nursery": {
-        "useSortedClasses": "off"
       }
     }
   },

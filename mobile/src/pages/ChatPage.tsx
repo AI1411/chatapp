@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { invoke } from "@tauri-apps/api/core";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import type { Message } from "../types";
 
 export function ChatPage() {
@@ -22,7 +22,7 @@ export function ChatPage() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  });
 
   function scrollToBottom() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -70,7 +70,7 @@ export function ChatPage() {
   return (
     <div className="page chat-page">
       <header className="chat-header">
-        <button onClick={() => navigate(-1)} className="back-button">
+        <button type="button" onClick={() => navigate(-1)} className="back-button">
           ← Back
         </button>
         <h1>Chat Room</h1>
@@ -83,9 +83,7 @@ export function ChatPage() {
           <div key={message.id} className="message">
             <div className="message-sender">{message.senderId}</div>
             <div className="message-content">{message.content}</div>
-            <div className="message-time">
-              {new Date(message.createdAt).toLocaleTimeString()}
-            </div>
+            <div className="message-time">{new Date(message.createdAt).toLocaleTimeString()}</div>
           </div>
         ))}
         <div ref={messagesEndRef} />

@@ -1,7 +1,7 @@
 # Rust formatter configuration
 
 # Use stable features only
-edition = "2024"
+edition = "2021"
 
 # Maximum line width
 max_width = 100
@@ -13,20 +13,12 @@ tab_spaces = 4
 # Newline style
 newline_style = "Auto"
 
-# Import grouping
-imports_granularity = "Module"
-group_imports = "StdExternalCrate"
+# Reorder imports
 reorder_imports = true
 
 # Formatting options
 use_small_heuristics = "Default"
-fn_single_line = false
-where_single_line = false
 force_explicit_abi = true
-
-# Comments
-normalize_comments = false
-wrap_comments = false
 
 # Misc
 use_field_init_shorthand = true

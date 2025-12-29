@@ -55,12 +55,8 @@ async fn main() -> Result<()> {
 
     Server::builder()
         .add_service(reflection_service)
-        .add_service(shared::proto::chat::chat_service_server::ChatServiceServer::new(
-            chat_service,
-        ))
-        .add_service(shared::proto::user::user_service_server::UserServiceServer::new(
-            user_service,
-        ))
+        .add_service(shared::proto::chat::chat_service_server::ChatServiceServer::new(chat_service))
+        .add_service(shared::proto::user::user_service_server::UserServiceServer::new(user_service))
         .serve(addr)
         .await?;
 

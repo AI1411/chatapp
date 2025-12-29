@@ -1,15 +1,16 @@
 //! Chat service implementation
 
 use shared::proto::chat::{
-    chat_service_server::ChatService, CreateRoomRequest, CreateRoomResponse, GetMessagesRequest,
-    GetMessagesResponse, GetRoomsRequest, GetRoomsResponse, SendMessageRequest,
-    SendMessageResponse,
+    CreateRoomRequest, CreateRoomResponse, GetMessagesRequest, GetMessagesResponse,
+    GetRoomsRequest, GetRoomsResponse, SendMessageRequest, SendMessageResponse,
+    chat_service_server::ChatService,
 };
 use sqlx::PgPool;
 use tonic::{Request, Response, Status};
 use tracing::info;
 
 /// Chat service implementation
+#[allow(dead_code)]
 pub struct ChatServiceImpl {
     pool: PgPool,
 }

@@ -14,7 +14,8 @@ impl AppState {
     pub fn new() -> Self {
         Self {
             auth_token: RwLock::new(None),
-            api_url: std::env::var("API_URL").unwrap_or_else(|_| "http://localhost:50051".to_string()),
+            api_url: std::env::var("API_URL")
+                .unwrap_or_else(|_| "http://localhost:50051".to_string()),
         }
     }
 
@@ -23,10 +24,12 @@ impl AppState {
         *guard = Some(token);
     }
 
+    #[allow(dead_code)]
     pub fn get_token(&self) -> Option<String> {
         self.auth_token.read().unwrap().clone()
     }
 
+    #[allow(dead_code)]
     pub fn clear_token(&self) {
         let mut guard = self.auth_token.write().unwrap();
         *guard = None;

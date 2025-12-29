@@ -5,6 +5,7 @@ use std::env;
 
 /// Server configuration loaded from environment variables
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct Config {
     /// Database connection URL
     pub database_url: String,

@@ -1,6 +1,6 @@
+import { invoke } from "@tauri-apps/api/core";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { invoke } from "@tauri-apps/api/core";
 import type { Room } from "../types";
 import styles from "./HomePage.module.css";
 
@@ -39,7 +39,7 @@ export function HomePage() {
       <div className={styles.errorContainer}>
         <div className={styles.errorIcon}>!</div>
         <p className={styles.errorMessage}>{error}</p>
-        <button className="btn-primary" onClick={loadRooms}>
+        <button type="button" className="btn-primary" onClick={loadRooms}>
           もう一度試す
         </button>
       </div>
@@ -62,22 +62,28 @@ export function HomePage() {
 
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h2 className={styles.heroTitle}>
-            今、なにしてる？
-          </h2>
-          <p className={styles.heroSubtitle}>
-            気軽につぶやいて、みんなとつながろう
-          </p>
+          <h2 className={styles.heroTitle}>今、なにしてる？？</h2>
+          <p className={styles.heroSubtitle}>気軽につぶやいて、みんなとつながろう</p>
           <div className={styles.heroActions}>
-            <button className="btn-primary" style={{ padding: "1rem 2rem", fontSize: "1.125rem" }}>
+            <button
+              type="button"
+              className="btn-primary"
+              style={{ padding: "1rem 2rem", fontSize: "1.125rem" }}
+            >
               はじめる
             </button>
           </div>
         </div>
         <div className={styles.heroDecoration}>
-          <span className={styles.bubble} style={{ "--delay": "0s" } as React.CSSProperties}>👋</span>
-          <span className={styles.bubble} style={{ "--delay": "0.2s" } as React.CSSProperties}>✨</span>
-          <span className={styles.bubble} style={{ "--delay": "0.4s" } as React.CSSProperties}>💭</span>
+          <span className={styles.bubble} style={{ "--delay": "0s" } as React.CSSProperties}>
+            👋
+          </span>
+          <span className={styles.bubble} style={{ "--delay": "0.2s" } as React.CSSProperties}>
+            ✨
+          </span>
+          <span className={styles.bubble} style={{ "--delay": "0.4s" } as React.CSSProperties}>
+            💭
+          </span>
         </div>
       </section>
 
@@ -94,7 +100,7 @@ export function HomePage() {
             <p className={styles.emptyDescription}>
               新しいトークルームを作って、会話を始めましょう！
             </p>
-            <button className="btn-primary">
+            <button type="button" className="btn-primary">
               ルームを作成
             </button>
           </div>
@@ -107,9 +113,7 @@ export function HomePage() {
                 style={{ "--index": index } as React.CSSProperties}
               >
                 <Link to={`/chat/${room.id}`} className={styles.roomLink}>
-                  <div className={styles.roomAvatar}>
-                    {room.name.charAt(0).toUpperCase()}
-                  </div>
+                  <div className={styles.roomAvatar}>{room.name.charAt(0).toUpperCase()}</div>
                   <div className={styles.roomInfo}>
                     <span className={styles.roomName}>{room.name}</span>
                     <span className={styles.roomDescription}>
@@ -125,18 +129,18 @@ export function HomePage() {
       </main>
 
       <nav className={styles.bottomNav}>
-        <button className={`${styles.navItem} ${styles.navItemActive}`}>
+        <button type="button" className={`${styles.navItem} ${styles.navItemActive}`}>
           <span className={styles.navIcon}>🏠</span>
           <span className={styles.navLabel}>ホーム</span>
         </button>
-        <button className={styles.fabButton}>
+        <button type="button" className={styles.fabButton}>
           <span className={styles.fabIcon}>✏️</span>
         </button>
-        <button className={styles.navItem}>
+        <button type="button" className={styles.navItem}>
           <span className={styles.navIcon}>🔔</span>
           <span className={styles.navLabel}>通知</span>
         </button>
-        <button className={styles.navItem}>
+        <button type="button" className={styles.navItem}>
           <span className={styles.navIcon}>👤</span>
           <span className={styles.navLabel}>プロフィール</span>
         </button>

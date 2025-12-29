@@ -1,6 +1,6 @@
+import { invoke } from "@tauri-apps/api/core";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { invoke } from "@tauri-apps/api/core";
 import styles from "./LoginPage.module.css";
 
 export function LoginPage() {
@@ -78,11 +78,7 @@ export function LoginPage() {
             />
           </div>
 
-          <button
-            type="submit"
-            className={styles.submitButton}
-            disabled={loading}
-          >
+          <button type="submit" className={styles.submitButton} disabled={loading}>
             {loading ? (
               <>
                 <span className={styles.spinner} />
@@ -95,9 +91,7 @@ export function LoginPage() {
         </form>
 
         <div className={styles.footer}>
-          <p className={styles.footerText}>
-            アカウントをお持ちでないですか？
-          </p>
+          <p className={styles.footerText}>アカウントをお持ちでないですか？</p>
           <Link to="/register" className={styles.registerLink}>
             新規登録はこちら
           </Link>

@@ -1,14 +1,15 @@
 //! User service implementation
 
 use shared::proto::user::{
-    user_service_server::UserService, GetUserRequest, GetUserResponse, LoginRequest,
-    LoginResponse, RegisterRequest, RegisterResponse,
+    GetUserRequest, GetUserResponse, LoginRequest, LoginResponse, RegisterRequest,
+    RegisterResponse, user_service_server::UserService,
 };
 use sqlx::PgPool;
 use tonic::{Request, Response, Status};
 use tracing::info;
 
 /// User service implementation
+#[allow(dead_code)]
 pub struct UserServiceImpl {
     pool: PgPool,
 }

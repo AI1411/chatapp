@@ -46,7 +46,7 @@ pub struct User {
 #[tauri::command]
 pub async fn login(
     email: String,
-    password: String,
+    _password: String,
     state: State<'_, AppState>,
 ) -> Result<User, String> {
     info!("Login attempt for: {}", email);
